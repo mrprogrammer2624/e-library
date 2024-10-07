@@ -1,11 +1,13 @@
 import { Form, Input, Button, DatePicker, Select } from "antd";
 import moment from "moment";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
-const AddEditBookForm = ({ book, onSubmit }) => {
+export const AddEditBookForm = ({ book, onSubmit }) => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (book) {
@@ -22,6 +24,8 @@ const AddEditBookForm = ({ book, onSubmit }) => {
       publicationDate: values.publicationDate.format("YYYY-MM-DD"),
       id: book ? book.id : null,
     });
+
+    navigate("/");
   };
 
   return (
@@ -77,5 +81,3 @@ const AddEditBookForm = ({ book, onSubmit }) => {
     </Form>
   );
 };
-
-export default AddEditBookForm;

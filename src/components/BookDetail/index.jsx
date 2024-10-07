@@ -1,11 +1,18 @@
 import { Card, Button, Descriptions } from "antd";
+import { useNavigate } from "react-router-dom";
 
-const BookDetail = ({ book, onBorrowReturn, onEdit }) => {
+export const BookDetail = ({ book, onBorrowReturn }) => {
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/edit/${book.id}`);
+  };
+
   return (
     <Card
       title={book.title}
       extra={
-        <Button type="primary" onClick={onEdit}>
+        <Button type="primary" onClick={handleEdit}>
           Edit
         </Button>
       }
@@ -30,5 +37,3 @@ const BookDetail = ({ book, onBorrowReturn, onEdit }) => {
     </Card>
   );
 };
-
-export default BookDetail;

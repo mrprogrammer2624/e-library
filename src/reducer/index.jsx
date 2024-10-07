@@ -1,4 +1,4 @@
-import { ADD_BOOK, EDIT_BOOK } from "@/action";
+import { ADD_BOOK, BORROW_RETURN_BOOK, EDIT_BOOK } from "@/action";
 
 const initialBooks = [
   {
@@ -34,6 +34,12 @@ const bookReducer = (state = initialBooks, action) => {
     case EDIT_BOOK:
       return state.map((book) =>
         book.id === action.payload.id ? action.payload : book
+      );
+    case BORROW_RETURN_BOOK:
+      return state.map((book) =>
+        book.id === action.payload
+          ? { ...book, borrowed: !book.borrowed }
+          : book
       );
     default:
       return state;

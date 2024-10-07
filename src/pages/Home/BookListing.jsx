@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { List, Card, Input, Select, DatePicker } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-
+import { useNavigate } from "react-router-dom";
 const { Option } = Select;
 
-const BookListing = ({ books, onBookSelect }) => {
+const BookListing = ({ books }) => {
+  const navigate = useNavigate();
   const [filteredBooks, setFilteredBooks] = useState(books);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
@@ -82,7 +83,7 @@ const BookListing = ({ books, onBookSelect }) => {
           <List.Item>
             <Card
               hoverable
-              onClick={() => onBookSelect(book)}
+              onClick={() => navigate(`/show-details/${book.id}`)}
               title={book.title}
               extra={
                 book.borrowed ? (
